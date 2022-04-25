@@ -9,9 +9,18 @@ async function main(){
     
     let countValue = result.value;
 
-    function increment(){
+    async function increment(){
         countValue++;
         countContainer.textContent = countValue;
+        await fetch("http://localhost:9001/counter", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                value: string(countValue) 
+            }) 
+        })
     }
 
     function decrement(){
